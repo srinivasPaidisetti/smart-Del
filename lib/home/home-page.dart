@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterbasicapp/model/application_settings.dart';
 import 'package:flutterbasicapp/services/main-service.dart';
 import 'package:flutterbasicapp/strings.dart';
 
@@ -10,7 +11,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool isLoading = false;
 
-  Map<String, dynamic> applicationData;
+  ApplicationSettings applicationSettings;
 
   @override
   void initState() {
@@ -28,26 +29,24 @@ class _HomePageState extends State<HomePage> {
         child: Center(
             child: isLoading
                 ? CircularProgressIndicator()
-                : applicationData != null
+                : applicationSettings != null
                     ? Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                              "AndroidAppMinVersion : ${applicationData['Data']['AndroidAppMinVersion'].toString()}"),
+                              "AndroidAppMinVersion : ${applicationSettings.data.androidAppMinVersion.toString()}"),
                           Text(
-                              "AndroidAppLatestVersion : ${applicationData['Data']['AndroidAppLatestVersion'].toString()}"),
+                              "AndroidAppLatestVersion : ${applicationSettings.data.androidAppLatestVersion.toString()}"),
                           Text(
-                              "iOSAppLatestVersion :${applicationData['Data']['iOSAppLatestVersion'].toString()}"),
+                              "iOSAppLatestVersion :${applicationSettings.data.iOsAppLatestVersion.toString()}"),
                           Text(
-                              "iOSAppMinVersion :${applicationData['Data']['iOSAppMinVersion'].toString()}"),
+                              "iOSAppMinVersion :${applicationSettings.data.iOsAppMinVersion.toString()}"),
                           Text(
-                              "ServerDeployedOn :${applicationData['Data']['ServerDeployedOn'].toString()}"),
+                              "ServerDeployedOn :${applicationSettings.data.serverDeployedOn.toString()}"),
                           Text(
-                              "ServerVersion :${applicationData['Data']['ServerVersion'].toString()}"),
+                              "ServerVersion :${applicationSettings.data.serverVersion.toString()}"),
                           Text(
-                              "SettingModifiedOn :${applicationData['Data']['SettingModifiedOn'].toString()}"),
-                          Text(
-                              "iOSAppMinVersion :${applicationData['Data']['iOSAppMinVersion'].toString()}"),
+                              "SettingModifiedOn :${applicationSettings.data.settingModifiedOn.toString()}"),
                         ],
                       )
                     : Text('SomeThing Went Wrong')),
@@ -61,7 +60,7 @@ class _HomePageState extends State<HomePage> {
     });
     await MainService.getApplicationData().then((value) {
       setState(() {
-        applicationData = value;
+        applicationSettings = ApplicationSettings.fromMap(value);
         isLoading = false;
       });
     });

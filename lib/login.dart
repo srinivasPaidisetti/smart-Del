@@ -5,6 +5,8 @@ import 'package:flutterbasicapp/color.dart';
 import 'package:flutterbasicapp/services/common.dart';
 import 'package:flutterbasicapp/strings.dart';
 
+import 'home/home-page.dart';
+
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -117,8 +119,8 @@ class _LoginState extends State<Login> {
   void login() {
     if (_formKey.currentState.validate()) {
       Common.setMobileNumber(mobileNumber).then((value) {
-//        Navigator.push(
-//            context, MaterialPageRoute(builder: (context) => HomePage()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
       });
     }
   }
