@@ -38,7 +38,7 @@ class _LoginState extends State<Login> {
               padding: const EdgeInsets.only(top: 50),
               child: Center(
                 child: Text(
-                  appname,
+                  appName,
                   style: TextStyle(
                       fontSize: 30,
                       color: whiteColor,
@@ -91,7 +91,7 @@ class _LoginState extends State<Login> {
           maxLength: 10,
           decoration: InputDecoration(
               errorStyle: TextStyle(color: blackColor),
-              hintText: entermobilenumber,
+              hintText: enterMobileNumber,
               hintStyle: TextStyle(
                   fontSize: 16,
                   color: whiteColor,
